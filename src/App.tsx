@@ -10,7 +10,7 @@ export default function App() {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [toast, setToast] = useState<string | null>(null);
   
-  const [view, setView] = useState<'home' | 'checkout' | 'success' | 'customer-service' | 'legal-privacy'>('home');
+  const [view, setView] = useState<'home' | 'checkout' | 'success' | 'customer-service' | 'legal-privacy' | 'about-us'>('home');
   const [placedOrder, setPlacedOrder] = useState<{items: Product[], total: number, orderId: string} | null>(null);
 
   const showToastMessage = (message: string) => {
@@ -80,7 +80,7 @@ export default function App() {
 
       {/* Top Banner */}
       <div className="bg-[#f4eddd] text-center py-2 text-xs tracking-widest uppercase flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-4">
-        <span className="font-bold text-[#e50010]">Bisma Chand - 02-11231-012</span>
+        <span className="font-bold text-[#e50010]">Bisma Chand - 02-111231-012</span>
         <span className="hidden sm:inline">|</span>
         <span>Free shipping over $40 & free returns</span>
       </div>
@@ -307,6 +307,7 @@ export default function App() {
                   <img 
                     src={product.image} 
                     alt={product.name} 
+                    onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&q=80'; }}
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                   />
                   {product.isNew && (
@@ -510,7 +511,7 @@ export default function App() {
             <div className="space-y-8 text-gray-600">
               <section>
                 <h2 className="text-xl font-bold text-black mb-4">Privacy Notice</h2>
-                <p className="mb-4">This is a simulated Privacy Notice for the university assignment of Bisma Chand (02-11231-012).</p>
+                <p className="mb-4">This is a simulated Privacy Notice for the university assignment of Bisma Chand (02-111231-012).</p>
                 <p className="mb-4">At H&M, we are committed to protecting and respecting your privacy. This notice explains how we collect, use, and safeguard your personal information when you use our website.</p>
               </section>
               <section>
@@ -527,6 +528,37 @@ export default function App() {
                 <h2 className="text-xl font-bold text-black mb-4">Copyright</h2>
                 <p>The content of this site is copyright-protected and is the property of H & M Hennes & Mauritz AB.</p>
               </section>
+            </div>
+          </div>
+        )}
+
+        {/* ABOUT US VIEW */}
+        {view === 'about-us' && (
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 animate-in fade-in">
+            <h1 className="text-3xl font-bold uppercase tracking-wider mb-8 text-center">About Us</h1>
+            <div className="bg-gray-50 p-8 sm:p-12 text-center mb-12">
+              <h2 className="text-2xl font-bold mb-4">University Assignment Project</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                This website is a clone of the H&M e-commerce platform, created by <span className="font-bold text-black">Bisma Chand (Enrollment: 02-111231-012)</span> as part of a university assignment.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80" alt="About Us" className="w-full h-auto object-cover" />
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-xl font-bold uppercase tracking-wider">Our Mission</h3>
+                <p className="text-gray-600">
+                  While this is an educational project, the goal is to replicate the seamless, user-friendly shopping experience of a major global fashion retailer. It demonstrates responsive design, state management, and modern web development practices.
+                </p>
+                <h3 className="text-xl font-bold uppercase tracking-wider">Technologies Used</h3>
+                <ul className="list-disc pl-5 text-gray-600 space-y-2">
+                  <li>React & TypeScript</li>
+                  <li>Tailwind CSS for Styling</li>
+                  <li>Lucide React for Icons</li>
+                  <li>Vite for Build Tooling</li>
+                </ul>
+              </div>
             </div>
           </div>
         )}
@@ -551,7 +583,7 @@ export default function App() {
               <h3 className="font-bold uppercase tracking-wider mb-4 text-sm">Corporate Info</h3>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li><a href="#" onClick={(e) => e.preventDefault()} className="hover:underline">Career at H&M</a></li>
-                <li><a href="#" onClick={(e) => e.preventDefault()} className="hover:underline">About H&M group</a></li>
+                <li><button onClick={() => { setView('about-us'); window.scrollTo(0,0); }} className="hover:underline">About Us</button></li>
                 <li><a href="#" onClick={(e) => e.preventDefault()} className="hover:underline">Sustainability</a></li>
                 <li><a href="#" onClick={(e) => e.preventDefault()} className="hover:underline">Press</a></li>
                 <li><a href="#" onClick={(e) => e.preventDefault()} className="hover:underline">Investor Relations</a></li>
@@ -585,7 +617,7 @@ export default function App() {
             <div className="flex justify-center mb-4">
               <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/H%26M-Logo.svg" alt="H&M" className="h-8" />
             </div>
-            <p className="text-xs text-gray-500">Clone built for university assignment by Bisma Chand (02-11231-012)</p>
+            <p className="text-xs text-gray-500">Clone built for university assignment by Bisma Chand (02-111231-012)</p>
           </div>
         </div>
       </footer>
